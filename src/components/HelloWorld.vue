@@ -43,14 +43,14 @@ const style = ({theme}) => {
 
 export default {
   name: "HelloWorld",
-  style,
+  // style,
   props: {
     msg: String
   },
-  // data() {
-  //   return {
-  //     style
-  //   };
-  // }
+  data() {
+    return {
+      style
+    };
+  }
 };
 </script>

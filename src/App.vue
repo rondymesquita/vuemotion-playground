@@ -1,14 +1,16 @@
 <template>
   <div id="app">
-    <button @click='toggle'>Toggle Theme</button>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <ThemeProvider :theme='theme'>
+      <button @click='toggle'>Toggle Theme</button>
+      <HelloWorld msg="Welcome to Your Vue.js App"/>
+      <HelloWorld msg="Welcome to Your Vue.js App"/>
+    </ThemeProvider>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-// import ThemeProvider from './ThemeProvider.vue'
+import ThemeProvider from './ThemeProvider.vue'
 
 const light = {
   name: 'light',
@@ -34,6 +36,12 @@ export default {
   name: 'App',
   components: {
     HelloWorld,
+    ThemeProvider
+  },
+  data () {
+    return {
+      theme: dark
+    }
   },
   created () {
     console.log('>>> app theme', this.theme.name);
@@ -43,7 +51,7 @@ export default {
       const t = this.theme.name === light.name
         ? dark
         : light
-      this.setTheme(t)
+      // this.setTheme(t)
       console.log('theme', t.name);
     }
   }

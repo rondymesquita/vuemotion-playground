@@ -9,36 +9,25 @@ const plugin = {
           classes: undefined
         }
       },
+      created () {
+        console.log('created', this.style);
+      },
       watch: {
-        'themeName': {
-          handler () {
-            const theme = this.theme
-            const {style} = this.$options
- 
-            console.log('>>> called watcher', theme.name, style);
-            if (!style) return;
-
-            const s = style({theme})
-            this.classes = css(s)
+        style: {
+          handler (_style) {
+            if (!_style) return;
+            console.log('>>> style');
+            this.classes = css(_style({theme: this.theme}))
           },
           immediate: true
         }
       },
-      computed: {
-        themeName () {
-          return this.theme.name
-        }
-      },
-      methods: {
-        setTheme(theme) {
-          console.log('test Changed');
-          this.theme = theme
-          const {style} = this.$options
-          console.log('>>>>>>', this);
-          const s = style({theme})
-          this.classes = css(s)
-        }
-      }
+      // computed: {
+      //   themeName () {
+      //     console.log('====> computed', this.theme);
+      //     return this.theme.name
+      //   }
+      // }
     })
   },
   install: function (Vue, options) {
