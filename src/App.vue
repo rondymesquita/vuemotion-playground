@@ -1,0 +1,62 @@
+<template>
+  <div id="app">
+    <button @click='toggle'>Toggle Theme</button>
+    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  </div>
+</template>
+
+<script>
+import HelloWorld from './components/HelloWorld.vue'
+// import ThemeProvider from './ThemeProvider.vue'
+
+const light = {
+  name: 'light',
+  colors: {
+    primary: '#8ff7a7',
+    secondary: '#50808e',
+    background: '#fff',
+    foreground: '#2c3e50'
+  }
+}
+
+const dark = {
+  name: 'dark',
+  colors: {
+    primary: '#028090',
+    secondary: '#a8a8a8',
+    background: '#1a1a1a',
+    foreground: '#eee'
+  }
+}
+
+export default {
+  name: 'App',
+  components: {
+    HelloWorld,
+  },
+  created () {
+    console.log('>>> app theme', this.theme.name);
+  },
+  methods: {
+    toggle () {
+      const t = this.theme.name === light.name
+        ? dark
+        : light
+      this.setTheme(t)
+      console.log('theme', t.name);
+    }
+  }
+}
+</script>
+
+<style lang="scss">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
