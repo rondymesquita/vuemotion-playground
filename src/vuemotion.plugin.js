@@ -1,33 +1,40 @@
 import { css } from "emotion";
 
 const plugin = {
-  installMixin: function (Vue, options) {
+  installMixin: function (Vue) {
 
     Vue.mixin({
       data () {
         return {
-          theme: options.theme,
-          classes: undefined
+          // theme: options.theme,
+          // classes: undefined
         }
       },
       created () {
         // console.log('created', this.style);
       },
+      computed: {
+        classes () {
+          return css(this.style({theme: this.theme()}))
+        }
+      },
       watch: {
         style: {
           handler (_style) {
             if (!_style) return;
-            this.classes = css(_style({theme: this.theme}))
+            this.classes = css(_style({theme: this.theme()}))
+          },
+          immediate: true
+        },
+        theme: {
+          handler (theme) {
+            if (!this.style) return;
+            console.log('>> th');
+            this.classes = css(this.style({theme}))
           },
           immediate: true
         }
-      },
-      // computed: {
-      //   themeName () {
-      //     console.log('====> computed', this.theme);
-      //     return this.theme.name
-      //   }
-      // }
+      }
     })
   },
   install: function (Vue, options) {

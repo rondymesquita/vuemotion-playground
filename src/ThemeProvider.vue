@@ -7,26 +7,38 @@
 </template>
 
 <script>
+
 export default {
   name: 'ThemeProvider',
-  // provide () {
-  //   return {
-  //     theme: this.t
-  //   }
-  // },
-  // props: {
-  //   theme: {
-  //     type: Object,
-  //     required: true
-  //   }
-  // },
-  data () {
+  props: {
+    theme: {
+      type: Object,
+      required: true
+    }
+  },
+  provide () {
     return {
-      t: this.theme
+      theme: () => this.t
+    }
+  },
+  watch: {
+    theme: {
+      handler (_theme) {
+        console.log('prop changed', _theme.name);
+        // this.t = _theme
+      },
+      immediate: true
+    }
+  },
+  computed: {
+    t () {
+      return this.theme
     }
   }
+  // data () {
+  //   return {
+  //     t: undefined
+  //   }
+  // },
 }
 </script>
-
-<style lang="css" scoped>
-</style>

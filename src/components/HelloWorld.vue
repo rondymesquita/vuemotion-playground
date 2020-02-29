@@ -5,7 +5,7 @@
     </div>
 
     <p>style-{{classes}}</p>
-    <!-- <p>theme: {{$theme}}</p> -->
+    <p>theme: {{theme()}}</p>
     <h3>Installed CLI Plugins</h3>
 
     <div class="footer" style="display: flex">
@@ -43,9 +43,15 @@ const style = ({theme}) => {
 
 export default {
   name: "HelloWorld",
-  // style,
+  inject: ['theme'],
   props: {
     msg: String
+  },
+  computed: {
+    t (_t) {
+      console.log('test', _t);
+      return this.theme
+    }
   },
   data() {
     return {

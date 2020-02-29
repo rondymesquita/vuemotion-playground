@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <ThemeProvider :theme='theme'>
+    <ThemeProvider :theme='t'>
       <button @click='toggle'>Toggle Theme</button>
       <HelloWorld msg="Welcome to Your Vue.js App"/>
       <HelloWorld msg="Welcome to Your Vue.js App"/>
@@ -40,19 +40,19 @@ export default {
   },
   data () {
     return {
-      theme: dark
+      t: dark
     }
   },
   created () {
-    console.log('>>> app theme', this.theme.name);
+    // console.log('>>> app theme', this.theme.name);
   },
   methods: {
     toggle () {
-      const t = this.theme.name === light.name
+      this.t = this.t.name === light.name
         ? dark
         : light
       // this.setTheme(t)
-      console.log('theme', t.name);
+      console.log('theme', this.t.name);
     }
   }
 }

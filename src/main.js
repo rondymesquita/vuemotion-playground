@@ -5,19 +5,7 @@ import Vuemotion from './vuemotion.plugin'
 
 Vue.config.productionTip = false
 
-const light = {
-  name: 'light',
-  colors: {
-    primary: '#8ff7a7',
-    secondary: '#50808e',
-    background: '#fff',
-    foreground: '#2a2e45'
-  }
-}
-
-Vue.use(Vuemotion, {
-  theme: light
-})
+Vue.use(Vuemotion)
 
 new Vue({
   store,
