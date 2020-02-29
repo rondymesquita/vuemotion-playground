@@ -2,6 +2,7 @@ import { css } from "emotion";
 
 const plugin = {
   installMixin: function (Vue, options) {
+
     Vue.mixin({
       data () {
         return {
@@ -10,13 +11,12 @@ const plugin = {
         }
       },
       created () {
-        console.log('created', this.style);
+        // console.log('created', this.style);
       },
       watch: {
         style: {
           handler (_style) {
             if (!_style) return;
-            console.log('>>> style');
             this.classes = css(_style({theme: this.theme}))
           },
           immediate: true
